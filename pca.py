@@ -1,17 +1,11 @@
-import xarray as xr
-import numpy as np
-import dask.array as da
-
-from sklearn.decomposition import PCA
-
-from matplotlib import pyplot as plt
-import seaborn as sns
-from plotly.colors import qualitative as clrs
-from plotly import graph_objects as go
-
-from scipy.interpolate import CubicSpline
-from tqdm import tqdm
 import argparse
+
+import dask.array as da
+import numpy as np
+import xarray as xr
+from scipy.interpolate import CubicSpline
+from sklearn.decomposition import PCA
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(
     description="PCA analysis on Gaia DR3 data.",

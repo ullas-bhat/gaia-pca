@@ -11,4 +11,6 @@ The `pca.py` script computes the principal components of the spectra and saves t
 - SciPy
 - scikit-learn
 - Xarray
+- Dask
+- TQDM
 
