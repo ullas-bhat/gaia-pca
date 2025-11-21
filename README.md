@@ -1,7 +1,9 @@
 # Gaia PCA
 The principal components of Gaia DR3 SSO spectra are known to encode the spectral type of asteroids ([Delbo et al. 2025](https://arxiv.org/abs/2511.00902)). This repository contains the code to compute the principal components of Gaia DR3 SSO spectra.
 
-The `gaia-data.nc` file contains the Gaia DR3 SSO spectra, along with the SNR, spectral slope, and z-i color for each spectrum. The `pca.py` script computes the principal components of the spectra and saves them to a new NetCDF file.
+The `gaia-data.nc` file contains the Gaia DR3 SSO spectra, along with the SNR, spectral slope, and z-i color for each spectrum.
+
+The `pca.py` script computes the principal components of the spectra and saves them to a new NetCDF file. Run the script with `-h` to see the default and available options.
 
 ## Requirements
 - Python 3.8+
