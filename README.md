@@ -5,6 +5,12 @@ The `gaia-data.nc` file contains the Gaia DR3 SSO spectra, along with the SNR, s
 
 The `pca.py` script computes the principal components of the spectra and saves them to a new NetCDF file. Run the script with `-h` to see the default and available options.
 
+## Attributions
+
+- [valid-31oct21-mod.dat](./valid-31oct21-mod.dat): Data from [Gaia Collaboration 2023](https://ui.adsabs.harvard.edu/abs/2023A%26A...674A..35G/abstract)
+- [slopeDeMeo.dat](./slopeDeMeo.dat): Provided by Marco Delbo.
+
+
 ## Requirements
 - Python 3.8+
 - NumPy
