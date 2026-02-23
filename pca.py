@@ -94,15 +94,9 @@ def main():
 
     # Extract relevant data
     all_gaia_nbrs = gaia_data["number"].to_numpy()
-    wl = gaia_data["wl"].to_numpy()[args.wavelength_range[0] : args.wavelength_range[1]]
-    refl = gaia_data["refl"].to_numpy()[
-        :, args.wavelength_range[0] : args.wavelength_range[1]
-    ]
-    mask = (
-        gaia_data["mask"]
-        .to_numpy()
-        .astype(bool)[:, args.wavelength_range[0] : args.wavelength_range[1]]
-    )
+    wl = gaia_data["wl"].to_numpy()
+    refl = gaia_data["refl"].to_numpy()
+    mask = gaia_data["mask"].to_numpy().astype(bool)
     refl = np.where(~mask, refl, np.nan)
 
     # Filling in masked
@@ -115,9 +109,11 @@ def main():
     for i, snr_t in enumerate(args.snr_thresholds):
         snr_mask = gaia_data["snr"] > snr_t  # create a mask to have only snr > threshold
         pca = PCA(n_components=args.num_pcs)
-        pca = pca.fit(interp_refl[snr_mask])  # fit PCA on the selected data
+        pca = pca.fit(
+            interp_refl[snr_mask, args.wavelength_range[0] : args.wavelength_range[1]]
+        )  # fit PCA on the selected data
         all_pca_vals[i] = pca.transform(
-            interp_refl
+            interp_refl[:, args.wavelength_range[0] : args.wavelength_range[1]]
         ).T  # calculate PCA values for all data
 
     # Construct xarray dataset to store the pca values:
@@ -155,7 +151,7 @@ def main():
     gaia_data["snr_thresh"].attrs["description"] = "SNR thresholds used for PCA fitting."
     gaia_data["pc"].attrs["description"] = "Principal component index."
 
-    gaia_data.to_netcdf(args.output_name)   # save to netCDF4 file
+    gaia_data.to_netcdf(args.output_name)  # save to netCDF4 file
 
 
 if __name__ == "__main__":
